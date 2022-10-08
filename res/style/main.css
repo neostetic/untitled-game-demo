@@ -102,10 +102,16 @@ body, html {
 }
 
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 590px) {
     #game_mainText {
         font-size: 42px;
+        height: 240px;
     }
+
+    .buttons {
+        margin-bottom: 80px;
+    }
+
     .buttons > button:hover {
         filter: opacity(1);
     }
