@@ -21,13 +21,16 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
 
 let userSave = {
     name: "anonymous",
+    years: 0,
     player_mood_happy: 0,
     player_mood_angry: 0,
     player_mood_depressed: 0,
-    player_mood_extrovert: 0,
+    player_mood_introvert: 0,
     player_mood_horny: 0,
     player_mood_theyKnow: 0,
     event_blankName: 0,
+    event_blankYears: 0,
+    event_weirdYears: 0,
     event_mothersName: 0,
 }
 
@@ -83,7 +86,7 @@ let questions = {
             buttonLink1: () => questions.question03_2,
             buttonLink2: () => questions.question03_1,
             buttonLink3: () => questions.question03_2,
-            buttonMood3: "extrovert"
+            buttonMood3: "introvert"
         }
     },
     question03_1: {
@@ -164,7 +167,8 @@ let questions = {
             button2: "Fuck off!",
             buttonLink1: () => questions.question06,
             buttonLink2: () => questions.question06,
-            buttonMood1: "angry"
+            buttonMood1: "depressed",
+            buttonMood2: "angry"
         }
     },
     question06: {
@@ -259,19 +263,60 @@ let questions = {
         text: "...for a while.",
         buttons: {
             button1: "(...)",
-            buttonLink1: () => questions.question06_1_1_1_1_1_1_1_1_1_1_1_1_1 //end
+            buttonLink1: () => questions.question06_1_1_1_1_1_1_1_1_1_1_1_1_1
         }
     },
+    question06_1_1_1_1_1_1_1_1_1_1_1_1_1: {
+        videoSrc: "./res/assets/videos/Video_1.mov"
+    },
     question06_2: {
-        text: "Emm... What movie do you like?",
+        text: "How old are you?",
         buttons: {
-            button1: "Trueman Show.",
-            button2: "I don't know...",
-            button3: "American Psycho.",
-            buttonLink1: () => questions.question06_2_1,
-            buttonLink2: () => questions.question06_2_2,
-            buttonLink3: () => questions.question06_2_1,
-            buttonMood2: "extrovert"
+            button1: "Submit",
+            buttonLink1: () => questions.question07
+        },
+        hasInput: "true"
+    },
+    question06_2_1: {
+        text: "This isn't a valid option...",
+        buttons: {
+            button1: "I know.",
+            buttonLink1: () => questions.question06_2_1_1
+        }
+    },
+    question06_2_1_1: {
+        text: "Do you think it is funny?",
+        buttons: {
+            button1: "Yes",
+            button2: "I didn't do it on purpose.",
+            buttonLink1: () => questions.question06_2_1_1_1,
+            buttonLink2: () => questions.question07,
+            buttonMood1: "angry"
+        }
+    },
+    question06_2_1_1_1: {
+        text: "Why do I even bother?",
+        buttons: {
+            button1: "(meh)",
+            buttonLink1: () => questions.question07,
+        }
+    },
+    question06_2_2: {
+        text: "You are %years% years old?",
+        buttons: {
+            button1: "Yes.",
+            button2: "I put some random number.",
+            buttonLink1: () => questions.question07,
+            buttonLink2: () => questions.question06_2_3,
+            buttonMood1: "angry"
+        }
+    },
+    question06_2_3: {
+        text: "Never mind, you deserve it.",
+        buttons: {
+            button1: "(hmm)",
+            buttonLink1: () => questions.question07,
+            buttonMood1: "happy"
         }
     },
     question06_3: {
@@ -280,9 +325,20 @@ let questions = {
             button1: "G̢̳̅̓҉̴͈͚̼̲́ͮ̀̍̎̓E̫̍ͭͦ̎Ț̛͕͈͉̲̟̐͐̾̚̚ ̛̞͈͇͉̻̀̏ͨ̉̏́Ṣ̰̻̠̟̎͊̕͏̛̟OM̲̜̘̖̜̤̭̤̒̊ͣͯ̚",
             button2: "Ȩ̡̰͙̰̬̞ͨ͟ ̩͔̜̈́̕͠H̢̛͓͔̮̰̀ͮ̽́ͮ̂͟͠E̲̘̝̩̘ͩ̌̓̾̈ͪ̑̓ͮ̃͘͟͢͞L̿L",
             button3: "P҉̶̲̣̈́̒́̅ͅ͏",
-            buttonMood2: "extrovert",
+            buttonMood2: "introvert",
+            buttonLink1: () => questions.question07,
+            buttonLink2: () => questions.question07,
+            buttonLink3: () => questions.question07
         },
         glitchedLink: () => questions.question06_2
+    },
+    question07: {
+        inputLink: userSave.years,
+        text: "...",
+        buttons: {
+            button1: "...",
+            buttonLink1: () => questions.question07
+        }
     },
     questionMother01: {
         text: "Hello mother!",
@@ -320,6 +376,7 @@ let game_button_1 = document.getElementById("game_button_1");
 let game_button_2 = document.getElementById("game_button_2");
 let game_button_3 = document.getElementById("game_button_3");
 let game_glitch = document.getElementById("game_glitch");
+let game_videoContainer = document.getElementById("game_videoContainer");
 
 const playStory = async (question) => {
     writeToElement(game_mainText, question.text);
@@ -346,6 +403,7 @@ const playStory = async (question) => {
 }
 
 const playStoryNextQuestion = async (question) => {
+    playVideo(question.videoSrc);
     animateAllDown();
     if (question.inputLink === userSave.name) {
         if (userSave.event_blankName === 1) {
@@ -362,6 +420,17 @@ const playStoryNextQuestion = async (question) => {
             userSave.name = game_input.value;
         }
     }
+    if (question.inputLink === userSave.years) {
+        if (userSave.event_weirdYears < 1) {
+            if (game_input.value * 1 > 0) {
+                userSave.years = game_input.value;
+                question = questions.question06_2_2;
+            } else {
+                question = questions.question06_2_1;
+                userSave.event_weirdYears++;
+            }
+        }
+    }
     game_input.value = '';
     if ((userSave.name.toLocaleLowerCase() === 'mother' || userSave.name.toLocaleLowerCase() === 'mom') && userSave.event_mothersName === 0) {
         question = questions.questionMother01;
@@ -373,7 +442,7 @@ const playStoryNextQuestion = async (question) => {
 
 const writeToElement = (element, text) => {
     if (text) {
-        text = text.replace("%name%", userSave.name);
+        text = text.replace("%name%", userSave.name).replace("%years%", userSave.years);
         element.innerHTML = text;
         animateUp(element);
     } else {
@@ -382,11 +451,7 @@ const writeToElement = (element, text) => {
 }
 
 const glitchExists = (glitch) => {
-    if (glitch) {
-        return true;
-    } else {
-        return false;
-    }
+    return !!glitch;
 }
 
 const writeToMood = (mood) => {
@@ -394,10 +459,17 @@ const writeToMood = (mood) => {
         case "happy": userSave.player_mood_happy++; break;
         case "angry": userSave.player_mood_angry++; break;
         case "depressed": userSave.player_mood_depressed++; break;
-        case "extrovert": userSave.player_mood_extrovert++; break;
+        case "introvert": userSave.player_mood_introvert++; break;
         case "horny": userSave.player_mood_horny++; break;
         case "theyKnow": userSave.player_mood_theyKnow++; break;
         default: break;
+    }
+}
+
+const playVideo = (src) => {
+    if (src) {
+        game_videoContainer.style.display = "flex"
+        game_videoContainer.innerHTML = "<video controls autoplay><source src=\"" + src + "\" type=\"video/mp4\"></video>"
     }
 }
 
