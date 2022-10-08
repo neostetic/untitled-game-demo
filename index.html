@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="res/style/main.css">
+    <link rel="stylesheet" href="res/style/animations.css">
+</head>
+<body onload="onLoadFunction()">
+<div class="container">
+    <div id="game_mainText"></div>
+    <div class="input">
+        <input id="game_input" maxlength="24" onkeydown="return /[a-z0-9.,:()?]/i.test(event.key)" placeholder="text here"/>
+    </div>
+    <div class="buttons">
+        <button id="game_button_1"></button>
+        <button id="game_button_2"></button>
+        <button id="game_button_3"></button>
+    </div>
+</div>
+<div class="glitch" id="game_glitch"></div>
+<script src="res/script/main.js"></script>
+</body>
+</html>

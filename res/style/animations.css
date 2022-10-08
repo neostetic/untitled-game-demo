@@ -1,0 +1,38 @@
+@keyframes anim_input {
+    0% {
+        background: url("../assets/as_input_bar_1.png") center center;
+        background-size: cover;
+    }
+    33% {
+        background: url("../assets/as_input_bar_2.png") center center;
+        background-size: cover;
+    }
+    66% {
+        background: url("../assets/as_input_bar_3.png") center center;
+        background-size: cover;
+    }
+    100% {
+        background: url("../assets/as_input_bar_1.png") center center;
+        background-size: cover;
+    }
+}
+
+@keyframes anim_button {
+    0% {
+        background: url("../assets/as_button_1.png") center center;
+        background-size: cover;
+    }
+    33% {
+        background: url("../assets/as_button_2.png") center center;
+        background-size: cover;
+    }
+    66% {
+        background: url("../assets/as_button_3.png") center center;
+        background-size: cover;
+    }
+    100% {
+        background: url("../assets/as_button_1.png") center center;
+        background-size: cover;
+    }
+
+}
