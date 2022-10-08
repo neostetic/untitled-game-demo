@@ -99,6 +99,7 @@ body, html {
     background: none;
     cursor: pointer;
     transition: .2s;
+    text-align: center;
 }
 
 
@@ -129,6 +130,6 @@ body, html {
     #game_button_1, #game_button_2, #game_button_3 {
         font-size: 26px;
         width: 33%;
-        height: 80px;
+        height: 120px;
     }
 }

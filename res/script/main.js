@@ -28,6 +28,7 @@ let userSave = {
     player_mood_horny: 0,
     player_mood_theyKnow: 0,
     event_blankName: 0,
+    event_mothersName: 0,
 }
 
 let questions = {
@@ -74,7 +75,7 @@ let questions = {
         }
     },
     question03: {
-        text: "Well, it seems like you've found my question stash.",
+        text: "Well, it seems like you've found my survey.",
         buttons: {
             button1: "Oh, cool!",
             button2: "What's that?",
@@ -96,7 +97,7 @@ let questions = {
         text: "I'll give you a question. You'll answer it.<br>Got it?",
         buttons: {
             button1: "Got it.",
-            button2: "Not impressed.",
+            button2: "Booriiing.",
             buttonLink1: () => questions.question04,
             buttonLink2: () => questions.question03_1_1_1
         }
@@ -117,7 +118,7 @@ let questions = {
         }
     },
     question04: {
-        text: "Ok... so...<br>Should we start?",
+        text: "Ok... so...<br>Are you ready?",
         buttons: {
             button1: "I guess so.",
             button2: "What is this all about?",
@@ -128,9 +129,9 @@ let questions = {
         }
     },
     question05: {
-        text: "How are you today?",
+        text: "How are you feeling today?",
         buttons: {
-            button1: "I'm feeling alright!",
+            button1: "Feeling alright I guess.",
             button2: "Out of my mood...",
             button3: "Why do you care?",
             buttonLink1: () => questions.question05_1,
@@ -157,7 +158,7 @@ let questions = {
         }
     },
     question05_3: {
-        text: "Jesus, calm down.",
+        text: "Sorry.",
         buttons: {
             button1: "(remain silent)",
             button2: "Fuck off!",
@@ -167,11 +168,11 @@ let questions = {
         }
     },
     question06: {
-        text: "Ok, so...<br>What's next...?",
+        text: "Ok, so...",
         buttons: {
             button1: "Okay...",
             button2: "(whistle into the void)",
-            button3: "You didn't prepare it, did you?",
+            button3: "You didn't prepare it, didn't you?",
             buttonLink1: () => questions.question06_2,
             buttonLink2: () => questions.question06_3,
             buttonLink3: () => questions.question06_1
@@ -188,7 +189,77 @@ let questions = {
         text: "Well, kinda. I wanted to improvise more...<br>You know.",
         buttons: {
             button1: "Right.",
-            buttonLink1: () => questions.question07,
+            buttonLink1: () => questions.question06_1_1_1
+        }
+    },
+    question06_1_1_1: {
+        text: "I'll be honest...",
+        buttons: {
+            button1: "(umm)",
+            buttonLink1: () => questions.question06_1_1_1_1
+        }
+    },
+    question06_1_1_1_1: {
+        text: "I'm having a bad time lately.",
+        buttons: {
+            button1: "(emm)",
+            buttonLink1: () => questions.question06_1_1_1_1_1
+        }
+    },
+    question06_1_1_1_1_1: {
+        text: "You know, like when you want to do stuff...",
+        buttons: {
+            button1: "(hmm)",
+            buttonLink1: () => questions.question06_1_1_1_1_1_1
+        }
+    },
+    question06_1_1_1_1_1_1: {
+        text: "... And then feeling like you don't want to do absolutely anything?",
+        buttons: {
+            button1: "Yeah.",
+            buttonLink1: () => questions.question06_1_1_1_1_1_1_1
+        }
+    },
+    question06_1_1_1_1_1_1_1: {
+        text: "Maybe I've gone crazy.",
+        buttons: {
+            button1: "(ehm)",
+            buttonLink1: () => questions.question06_1_1_1_1_1_1_1_1
+        }
+    },
+    question06_1_1_1_1_1_1_1_1: {
+        text: "Maybe I'm just overthinking it all.",
+        buttons: {
+            button1: "(...)",
+            buttonLink1: () => questions.question06_1_1_1_1_1_1_1_1_1
+        }
+    },
+    question06_1_1_1_1_1_1_1_1_1: {
+        text: "I... Want to stop.",
+        buttons: {
+            button1: "(emm)",
+            buttonLink1: () => questions.question06_1_1_1_1_1_1_1_1_1_1
+        }
+    },
+    question06_1_1_1_1_1_1_1_1_1_1: {
+        text: ". . .",
+        buttons: {
+            button1: "(...)",
+            buttonLink1: () => questions.question06_1_1_1_1_1_1_1_1_1_1_1
+        }
+    },
+    question06_1_1_1_1_1_1_1_1_1_1_1: {
+        text: "...just...",
+        buttons: {
+            button1: "(...)",
+            buttonLink1: () => questions.question06_1_1_1_1_1_1_1_1_1_1_1_1
+        }
+    },
+    question06_1_1_1_1_1_1_1_1_1_1_1_1: {
+        text: "...for a while.",
+        buttons: {
+            button1: "(...)",
+            buttonLink1: () => questions.question06_1_1_1_1_1_1_1_1_1_1_1_1_1 //end
         }
     },
     question06_2: {
@@ -212,7 +283,35 @@ let questions = {
             buttonMood2: "extrovert",
         },
         glitchedLink: () => questions.question06_2
-    }
+    },
+    questionMother01: {
+        text: "Hello mother!",
+        buttons: {
+            button1: "Hello Ian.",
+            buttonLink1: () => questions.questionMother02
+        }
+    },
+    questionMother02: {
+        text: "Did I miss you?",
+        buttons: {
+            button1: "You sure did Ian.",
+            buttonLink1: () => questions.questionMother03
+        }
+    },
+    questionMother03: {
+        text: "I'm sorry mother.",
+        buttons: {
+            button1: "I know Ian.",
+            buttonLink1: () => questions.questionMother04
+        }
+    },
+    questionMother04: {
+        text: "I'm sorry.",
+        buttons: {
+            button1: "I know.",
+            buttonLink1: () => questions.questionMother05 //end
+        }
+    },
 }
 
 let game_mainText = document.getElementById("game_mainText");
@@ -264,6 +363,10 @@ const playStoryNextQuestion = async (question) => {
         }
     }
     game_input.value = '';
+    if ((userSave.name.toLocaleLowerCase() === 'mother' || userSave.name.toLocaleLowerCase() === 'mom') && userSave.event_mothersName === 0) {
+        question = questions.questionMother01;
+        userSave.event_mothersName++;
+    }
     await sleep(questionsDelay);
     await playStory(question)
 }
