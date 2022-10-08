@@ -103,6 +103,10 @@ body, html {
 
 
 @media screen and (max-width: 590px) {
+    body, html {
+        overflow: auto;
+    }
+
     #game_mainText {
         font-size: 42px;
         height: 240px;
@@ -125,5 +129,6 @@ body, html {
     #game_button_1, #game_button_2, #game_button_3 {
         font-size: 26px;
         width: 33%;
+        height: 80px;
     }
 }
